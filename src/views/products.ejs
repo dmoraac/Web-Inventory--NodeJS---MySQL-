@@ -1,0 +1,52 @@
+<%- include('templates/header') %>
+<div class="main_container_products">
+    <div class="content">
+        <div class="form_box">
+            <h1>NUEVO PRODUCTO</h1>
+            <form action="/addProduct" method="POST">
+                <input type="text" name="id" id="id" placeholder="CODIGO DE PRODUCTO" required>
+                <input type="text" name="name" id="name" placeholder="NOMBRE" required>
+                <input type="text" name="description" id="description" placeholder="DESCRIPCION" required>
+                <input type="number" name="quantity" id="quantity" placeholder="CANTIDAD" required>
+                <button type="submit" class="btn_addProduct"><span>AGREGAR</span><img src="/img/add_product.png" alt="Botón Agregar Producto"></button>
+            </form>
+        </div>
+        <div class="table_box">
+            <div class="actions">
+                <h1>PRODUCTOS REGISTRADOS</h1>
+            </div>
+            <div class="table_container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>CODIGO</th>
+                            <th>NOMBRE</th>
+                            <th>DESCRIPCION</th>
+                            <th>CANTIDAD</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                        <tbody>
+                            <% if (data){ %>
+                            <% for(var i = 0; i < data.length; i++){ %>
+                                <tr>
+                                <td> <%= (i + 1) %> </td>
+                                <td> <%= data[i].id %> </td>
+                                <td> <%= data[i].name %> </td>
+                                <td> <%= data[i].description %> </td>
+                                <td> <%= data[i].quantity %> </td>    
+                                <td>
+                                    <a href="/deleteProduct/<%= data[i].id %>" class="btn_delete_data"><img src="img/delete.png" alt="Action Delete"></a>
+                                    <a href="/updateProduct/<%= data[i].id %>" class="btn_modify_data"><img src="img/update.png" alt="Action Modify"></a>
+                                </td>     
+                                </tr>
+                                <% } %>
+                            <% } %>
+                        </tbody>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('templates/footer') %>

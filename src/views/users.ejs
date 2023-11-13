@@ -1,0 +1,66 @@
+<%- include('templates/header') %>
+
+<div class="main_container">
+  <div class="box_form">
+    <h1>NUEVO USUARIO</h1>
+    <form action="/add" method="post">
+      <input type="number" name="id" id="id" placeholder="CEDULA / ID" required>
+      <input type="text" name="name" id="name" placeholder="NOMBRE" required>
+      <input type="text" name="last_name1" id="last_name1" placeholder="PRIMER APELLIDO" required>
+      <input type="text" name="last_name2" id="last_name2" placeholder="SEGUNDO APELLIDO" required>
+      <input type="text" name="email" id="email" placeholder="CORREO" required>
+      <input type="text" name="user" id="user" placeholder="USUARIO" required>
+      <input type="password" name="password" id="password" placeholder="CONTRASEÑA" required>
+      <select name="role" id="role" required>
+        <option value="" disabled selected hidden>Seleccione un Rol</option>
+        <option value="ADMINISTRADOR">Administrador</option>
+        <option value="OPERADOR">Operador</option>
+      </select>
+      <button type="submit" class="btn_add"><span>REGISTRAR</span><img src="/img/add_user.png" alt="Botón Agregar Usuario"></button>
+    </form>
+  </div>
+  <div class="box_table">
+    <h1>USUARIOS REGISTRADOS</h1>
+    <div class="table_container">
+      <table class="tbl_grid">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>CEDULA</th>
+            <th>NOMBRE</th>
+            <th>PRIMER APELLIDO</th>
+            <th>SEGUNDO APELLIDO</th>
+            <th>CORREO</th>
+            <th>USUARIO</th>
+            <th>CONTRASEÑA</th>
+            <th>ROL</th>
+            <th>ACCIONES</th>
+          </tr>
+          <tbody>
+            <% if (data){ %>
+              <% for(var i = 0; i < data.length; i++){ %>
+                <tr>
+                  <td> <%= (i + 1) %> </td>
+                  <td> <%= data[i].id %> </td>
+                  <td> <%= data[i].name %> </td>
+                  <td> <%= data[i].last_name1 %> </td>
+                  <td> <%= data[i].last_name2 %> </td>
+                  <td> <%= data[i].email %> </td>
+                  <td> <%= data[i].user %> </td>
+                  <td> <%= data[i].password %> </td>
+                  <td> <%= data[i].role %> </td>     
+                  <td>
+                    <a href="/delete/<%= data[i].id %>" class="btn_delete_data"><img src="img/delete.png" alt="Action Delete"></a>
+                    <a href="/update/<%= data[i].id %>" class="btn_modify_data"><img src="img/update.png" alt="Action Modify"></a>
+                  </td>     
+                </tr>
+                <% } %>
+               <% } %>
+          </tbody>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include('templates/footer') %>

@@ -1,0 +1,24 @@
+<%- include('templates/header') %>
+
+<div class="container_modify">
+    <h1>Actualización de Datos</h1>
+    <div class="content">
+        <form action="/update/<%= data.id %>" method="post">
+            <input type="number" name="id" id="id" value="<%= data.id %>" disabled>
+            <input type="text" name="name" id="name" value="<%= data.name %>">
+            <input type="text" name="last_name1" id="last_name1" value="<%= data.last_name1 %>">
+            <input type="text" name="last_name2" id="last_name2" value="<%= data.last_name2 %>">
+            <input type="text" name="email" id="email" value="<%= data.email %>">
+            <input type="text" name="user" id="user" value="<%= data.user %>">
+            <input type="password" name="password" id="password" value="<%= data.password %>">
+            <select name="role" id="role">
+              <option value="" disabled selected hidden><%= data.role %></option>
+              <option value="administrator">Administrador</option>
+              <option value="operator">Operador</option>
+            </select>
+            <button type="submit" class="btn_update"><span>EDITAR</span><img src="/img/update.png" alt="Botón Editar Datos"></button>
+          </form>
+    </div>
+</div>
+
+<%- include('templates/footer') %>
